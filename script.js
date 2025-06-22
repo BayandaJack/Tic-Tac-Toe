@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     //main functionality stuff
     buttons.forEach(button => {
         button.addEventListener('click', () => {
-            button.textContent = "X";
+            if (button.textContent === "X" || button.textContent === "O"){
+                alert("A player has already played there!");
+            } else{
+                button.textContent = "X";
+            }
         })
     })
 })
