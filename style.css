@@ -3,6 +3,7 @@ body{
     padding: 0;
     color: #fff;
     background-color: indianred;
+    text-align: center;
 }
 
 .board{
@@ -17,6 +18,7 @@ body{
 }
 
 button{
+    font-size: xx-large;
     width: 200px;
     height: 200px;
     border-radius: 15px;
