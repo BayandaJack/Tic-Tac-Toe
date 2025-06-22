@@ -24,4 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     })
+
+    /* Ideally we'd need a useEffect type of function that can constantly run and
+    check if the symbols in the different 'tals and diagonals are the same
+    to declare a winner, but as far as I know we don't have such outside of React */
 })
