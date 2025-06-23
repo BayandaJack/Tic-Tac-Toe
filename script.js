@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     resetGame();
                 }, 100);
+
+                return;
             }
         }
 
