@@ -9,6 +9,44 @@ document.addEventListener('DOMContentLoaded', () => {
         ["", "", ""]  // row 2 → (2,0), (2,1), (2,2)
     ];
 
+    const winPatterns = [
+        // Rows
+        [[0, 0], [0, 1], [0, 2]],
+        [[1, 0], [1, 1], [1, 2]],
+        [[2, 0], [2, 1], [2, 2]],
+
+        // Columns
+        [[0, 0], [1, 0], [2, 0]],
+        [[0, 1], [1, 1], [2, 1]],
+        [[0, 2], [1, 2], [2, 2]],
+
+        // Diagonals
+        [[0, 0], [1, 1], [2, 2]], // top-left to bottom-right
+        [[0, 2], [1, 1], [2, 0]]  // top-right to bottom-left
+    ];
+
+    let flag = false;
+
+    function checkWinner(){
+        for (const pattern of winPatterns) {
+            const [a, b, c] = pattern; //array destructuring
+
+            //taking the symbols in the positions of those arrays in winPattern for each one
+            const valA = board[a[0]][a[1]];
+            const valB = board[b[0]][b[1]];
+            const valC = board[c[0]][c[1]];
+
+            if (valA && valA === valB && valB === valC) {
+                // Winner found!
+                setTimeout(() => {
+                    alert(`Player ${valA} wins!`);
+                }, 50); // slight delay
+                flag = true;
+            }
+        }
+
+    }
+
     //main functionality stuff
     buttons.forEach(button => {
         button.addEventListener('click', () => {
@@ -21,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(board);
                     button.textContent = "X";
                     turnHeader.textContent = "Player O's turn";
+                    checkWinner();
                 }  
             }else {
                 if (button.textContent === "X" || button.textContent === "O"){
@@ -31,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(board);
                     button.textContent = "O";
                     turnHeader.textContent = "Player X's turn";
+                    checkWinner();
                 }  
             }
         })
