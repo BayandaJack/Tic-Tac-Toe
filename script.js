@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else{
                     const id = button.id; //gets the cell so we can fill it in on the board
                     board[id[0]][id[2]] = "X";
+                    console.log(board);
                     button.textContent = "X";
                     turnHeader.textContent = "Player O's turn";
                 }  
@@ -26,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert("A player has already played there!");
                 } else{
                     const id = button.id; //gets the cell so we can fill it in on the board
-                    board[id[0]][id[2]] = "X";
+                    board[id[0]][id[2]] = "O";
+                    console.log(board);
                     button.textContent = "O";
                     turnHeader.textContent = "Player X's turn";
                 }  
