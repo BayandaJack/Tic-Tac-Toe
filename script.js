@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
         [[0, 2], [1, 1], [2, 0]]  // top-right to bottom-left
     ];
 
-    let flag = false;
+    function resetGame() {
+        location.reload(); // refreshes the page completely
+    }
 
     function checkWinner(){
         for (const pattern of winPatterns) {
@@ -38,10 +40,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (valA && valA === valB && valB === valC) {
                 // Winner found!
+                const cordA = a[0].toString() + a[1].toString();
+                const cordB = b[0].toString() + b[1].toString();
+                const cordC = c[0].toString() + c[1].toString();
+
+                //change color of those button blocks to winner colour
+                const winBlockA = document.getElementById(`${cordA}`);
+                const winBlockB = document.getElementById(`${cordB}`);
+                const winBlockC = document.getElementById(`${cordC}`);
+
+                winBlockA.style.backgroundColor = "green";
+                winBlockB.style.backgroundColor = "green";
+                winBlockC.style.backgroundColor = "green";
+
                 setTimeout(() => {
                     alert(`Player ${valA} wins!`);
                 }, 50); // slight delay
-                flag = true;
+
+                //resetting the page for a new game
+                setTimeout(() => {
+                    resetGame();
+                }, 100);
             }
         }
 
@@ -55,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert("A player has already played there!");
                 } else{
                     const id = button.id; //gets the cell so we can fill it in on the board
-                    board[id[0]][id[2]] = "X";
+                    board[id[0]][id[1]] = "X";
                     console.log(board);
                     button.textContent = "X";
                     turnHeader.textContent = "Player O's turn";
@@ -66,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert("A player has already played there!");
                 } else{
                     const id = button.id; //gets the cell so we can fill it in on the board
-                    board[id[0]][id[2]] = "O";
+                    board[id[0]][id[1]] = "O";
                     console.log(board);
                     button.textContent = "O";
                     turnHeader.textContent = "Player X's turn";
