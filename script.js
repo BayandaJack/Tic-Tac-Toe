@@ -29,6 +29,21 @@ document.addEventListener('DOMContentLoaded', () => {
         location.reload(); // refreshes the page completely
     }
 
+    function checkTie(){
+        //we want to check for NO NULLS basically
+        let flag = true;
+        for (array of board){
+            for (index of array){
+                if (index === ""){
+                    flag = false;
+                    break;
+                }
+            }
+        }
+
+        return flag;
+    }
+
     function checkWinner(){
         for (const pattern of winPatterns) {
             const [a, b, c] = pattern; //array destructuring
@@ -79,8 +94,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     board[id[0]][id[1]] = "X";
                     console.log(board);
                     button.textContent = "X";
-                    turnHeader.textContent = "Player O's turn";
-                    checkWinner();
+                    if (!checkTie()){
+                        turnHeader.textContent = "Player O's turn";
+                        checkWinner();
+                    }else{
+                        setTimeout(() => {
+                            alert("It's a tie!");
+                        }, 50); // slight delay
+
+                        setTimeout(() => {
+                            resetGame();
+                        }, 100);
+                    }
                 }  
             }else {
                 if (button.textContent === "X" || button.textContent === "O"){
@@ -90,8 +115,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     board[id[0]][id[1]] = "O";
                     console.log(board);
                     button.textContent = "O";
-                    turnHeader.textContent = "Player X's turn";
-                    checkWinner();
+                    if (!checkTie()){
+                        turnHeader.textContent = "Player X's turn";
+                        checkWinner();
+                    }else{
+                        setTimeout(() => {
+                            alert("It's a tie!");
+                        }, 50); // slight delay
+
+                        setTimeout(() => {
+                            resetGame();
+                        }, 100);
+                    }
                 }  
             }
         })
